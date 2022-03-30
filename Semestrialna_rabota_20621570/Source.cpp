@@ -36,6 +36,7 @@ struct ship {												//osnovna struktura za korabni prevozi
 
 //PROTOTIPI NA FUNKCII
 
+void mainMenu(ship arrayShips[], int listSize);
 void addOne(ship arrayShips[], int&n);
 void addGroup(ship arrayShips[], int&n);
 void showAll(ship arrayShips[], int n);
@@ -53,10 +54,15 @@ void loadFile(ship arrayShips[], int&n);
 
 
 int main() {
-	int ch;
 	ship arrayShips[MAX_SHIPS];													//Definirane na osnoven masiv ot strukturi
 	int listSize=0;																//Duljina na masiva
+	mainMenu(arrayShips, listSize);
+	return 0;
+}
+
+void mainMenu(ship arrayShips[], int listSize) {
 	//MENU
+	int ch;
 	do {
 		cout << "\n ***********SHIP CARRIAGE***********\n";
 		cout << "\n Added ships: " << listSize;
@@ -106,7 +112,7 @@ int main() {
 					else break;
 				}
 			} while (ch < 1 || ch > 3);
-			switch (ch) 
+			switch (ch)
 			{
 			case 1:	 system("cls"); addOne(arrayShips, listSize); break;
 			case 2:  system("cls"); addGroup(arrayShips, listSize); break;
@@ -209,7 +215,6 @@ int main() {
 			break;
 		}
 	} while (ch != 7);
-	return 0;
 }
 
 
