@@ -25,13 +25,13 @@ struct container {											//struktura za konteiner
 };
 
 struct ship {												//osnovna struktura za korabni prevozi
-	char shipNum[10]{};										//nomer na korab
-	char shipName[20]{};									//ime na korab
-	date depDate{};											//data na poteglqne
-	double cargoCap{};										//tovaren kapacitet
-	int contCount{};										//broi konteineri s tovar
-	double remCap{};										//ostavash kapacitet sled natovarvane
-	container contList[MAX_CONTAINERS]{};					//masiv s konteinerite s tovari
+	char shipNum[10];										//nomer na korab
+	char shipName[20];										//ime na korab
+	date depDate;											//data na poteglqne
+	double cargoCap;										//tovaren kapacitet
+	int contCount;											//broi konteineri s tovar
+	double remCap;											//ostavash kapacitet sled natovarvane
+	container contList[MAX_CONTAINERS];						//masiv s konteinerite s tovari
 };
 
 //PROTOTIPI NA FUNKCII
@@ -321,7 +321,7 @@ void addGroup(ship arrayShips[], int& n) {											//DOBAVQNE NA GRUPA OT KORA
 			cin >> arrayShips[i + n].shipNum;										//TEKUSHT ELEMENT NA MASIVA = i + n
 			cin.ignore();								
 			cout << "Enter ship name:\t";
-			cin.getline(arrayShips[i + n].shipName, 20); //strcpy strcat strcmp strncpy strlen
+			cin.getline(arrayShips[i + n].shipName, 20);
 			do {
 				cout << "Enter ship daparture date  (dd mm yyyy):\t";
 				while (1)
@@ -334,7 +334,7 @@ void addGroup(ship arrayShips[], int& n) {											//DOBAVQNE NA GRUPA OT KORA
 						cout << "Invalid input " << endl;
 						cout << "Try again" << endl;
 					}
-					else break; //break return exit(0) exit(1) continue
+					else break;
 				}
 			} while ((arrayShips[i + n].depDate.day < 1 || arrayShips[i + n].depDate.day > 31) || (arrayShips[i + n].depDate.month < 1 || arrayShips[i + n].depDate.month > 12) || (arrayShips[i + n].depDate.year < 1900 || arrayShips[i + n].depDate.year > 2100));			//Validaciq za data
 			do {
@@ -785,7 +785,7 @@ void saveFile(ship arrayShips[], int n) {												//ZAPAZVANE NA KORABITE VUV
 		cout << endl << "Could not create file." << endl;
 		exit(1);
 	}
-
+	cout << "File saved succesfully\n";
 	shipfile.write((char*)arrayShips, (double)n*sizeof(ship));							//zapis na masiv
 	shipfile.close();
 	system("pause");
